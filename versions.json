@@ -1,14 +1,14 @@
 {
   "installer": "5.33.0",
   "lastRun": {
-    "at": "2026-11-15T21:02:24.449Z",
-    "url": "https://github.com/hosmelq/railway-template-laravel/actions/runs/43758670724"
+    "at": "2026-11-15T22:31:09.557Z",
+    "url": "https://github.com/hosmelq/railway-template-laravel/actions/runs/43766924523"
   },
   "variants": {
     "blade": {
       "variant": "blade",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:33:56.054Z",
+      "generatedAt": "2026-11-15T22:02:36.096Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -297,7 +297,7 @@
     "react-blank": {
       "variant": "react-blank",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:33:49.571Z",
+      "generatedAt": "2026-11-15T22:02:44.127Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -774,7 +774,7 @@
     "svelte-blank": {
       "variant": "svelte-blank",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:33:50.312Z",
+      "generatedAt": "2026-11-15T22:02:42.221Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -1206,7 +1206,7 @@
     "vue-blank": {
       "variant": "vue-blank",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:33:56.740Z",
+      "generatedAt": "2026-11-15T22:02:47.787Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -1649,7 +1649,7 @@
     "livewire-blank": {
       "variant": "livewire-blank",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:37:31.157Z",
+      "generatedAt": "2026-11-15T22:06:15.467Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -2044,7 +2044,7 @@
     "react": {
       "variant": "react",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:37:55.497Z",
+      "generatedAt": "2026-11-15T22:07:59.403Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -2597,7 +2597,7 @@
     "svelte": {
       "variant": "svelte",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:38:06.628Z",
+      "generatedAt": "2026-11-15T22:06:58.814Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -3062,7 +3062,7 @@
     "vue": {
       "variant": "vue",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:39:01.103Z",
+      "generatedAt": "2026-11-15T22:06:57.766Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -3549,7 +3549,7 @@
     "react-teams": {
       "variant": "react-teams",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:41:27.441Z",
+      "generatedAt": "2026-11-15T22:10:17.112Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -4102,7 +4102,7 @@
     "svelte-teams": {
       "variant": "svelte-teams",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:43:20.102Z",
+      "generatedAt": "2026-11-15T22:11:41.508Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -4567,7 +4567,7 @@
     "vue-teams": {
       "variant": "vue-teams",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:43:25.458Z",
+      "generatedAt": "2026-11-15T22:12:10.844Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -5054,7 +5054,7 @@
     "livewire": {
       "variant": "livewire",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:43:42.432Z",
+      "generatedAt": "2026-11-15T22:13:18.825Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -5468,7 +5468,7 @@
     "livewire-teams": {
       "variant": "livewire-teams",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:45:16.436Z",
+      "generatedAt": "2026-11-15T22:14:51.534Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
@@ -5882,7 +5882,7 @@
     "livewire-class-components": {
       "variant": "livewire-class-components",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T20:47:46.167Z",
+      "generatedAt": "2026-11-15T22:15:41.319Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
