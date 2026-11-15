@@ -4,16 +4,16 @@ Generate 14 official Laravel applications for 84 Railway template combinations: 
 
 ## Catalog and pins
 
-[`data/variants.json`](data/variants.json) is the single variant catalog used by every script and workflow. Its flags were checked against [`laravel/installer` v5.33.0 `NewCommand.php`](https://github.com/laravel/installer/blob/v5.33.0/src/NewCommand.php).
+[`data/variants.json`](data/variants.json) is the single variant catalog used by every script and workflow. Its flags follow the installer's [`NewCommand.php`](https://github.com/laravel/installer/blob/master/src/NewCommand.php); a regeneration fails if a newer installer rejects them.
 
 The generator pins the installer in `composer.json` and `composer.lock` and invokes `vendor/bin/laravel`. Non-interactive execution skips `interact()`, so the common flags explicitly preserve the interactive choices: `--database=sqlite --pest --boost --npm --git --branch=main`. Stack flags come only from the catalog. Authentication variants retain email verification, registration, two-factor authentication, passkeys and password confirmation. There is no WorkOS, Octane or SSR runtime.
 
 | Component | Version |
 | --- | --- |
-| Laravel installer | 5.33.0 |
-| APP image | `serversideup/php:8.5.12-frankenphp-v5.1.1` |
-| Queue and Scheduler image | `serversideup/php:8.5.12-cli-v5.1.1` |
-| Asset builder | `node:24.22.3-bookworm-slim` |
+| Laravel installer | Pinned in [`composer.json`](composer.json) |
+| APP image | `serversideup/php` FrankenPHP, pinned in [`templates/docker/app/Dockerfile`](templates/docker/app/Dockerfile) |
+| Queue and Scheduler image | `serversideup/php` CLI, pinned in [`templates/docker/queue/Dockerfile`](templates/docker/queue/Dockerfile) and [`templates/docker/scheduler/Dockerfile`](templates/docker/scheduler/Dockerfile) |
+| Asset builder | `node` 24, pinned in [`templates/docker/app/Dockerfile`](templates/docker/app/Dockerfile) |
 | MySQL | `mysql:9.4` |
 | PostgreSQL | `postgres:18` |
 | MariaDB LTS | `mariadb:11.8` |
@@ -21,6 +21,16 @@ The generator pins the installer in `composer.json` and `composer.lock` and invo
 | Local S3 test server | `versity/versitygw:v1.11.0` |
 
 PostgreSQL 18 matches the major used by [Railway's official PostgreSQL template](https://railway.com/template/postgres), checked on 2026-11-15. The harness uses the upstream PostgreSQL image; it does not exercise Railway's TLS wrapper. MariaDB 11.8 is an LTS series. ServerSideUp tags pin PHP's patch and the image release; backend tags retain the requested release series. `versions.json` records the exact Composer/npm versions resolved for each application and the latest workflow run. The installer is pinned; application packages intentionally refresh on regeneration.
+
+## Dependency updates
+
+Renovate (`.github/renovate.json`) checks the pinned installer in `composer.json`, the SHA-pinned workflow actions and the base images in `templates/docker/*/Dockerfile` every week.
+
+- Minor and patch updates of the installer, the base images and the workflows' Node and runner versions are merged automatically. Updates wait three days after each release. Docker Hub often returns no tag dates, and then an image updates without that wait.
+- A regex versioning rule reads ServerSideUp tags such as `8.5.12-frankenphp-v5.1.1` as a PHP 8.5 patch plus an image release, so both parts update. A new PHP minor needs a manual change.
+- Workflow action updates open a separate pull request for review, because those actions run next to `VARIANTS_TOKEN`. Major updates of anything also wait for review in their own pull request.
+
+Merged updates reach a variant repository only through the next regeneration, after that variant's six combinations pass. `config.platform.php` in `composer.json` makes Composer resolve for PHP 8.5 wherever it runs. The Renovate GitHub App needs access to this repository.
 
 ## Local use
 

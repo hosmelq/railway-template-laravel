@@ -1,0 +1,45 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", "group:all", "helpers:pinGitHubActionDigests", "schedule:weekly"],
+  "enabledManagers": ["composer", "dockerfile", "github-actions"],
+  "includePaths": [".github/workflows/**", "composer.json", "templates/docker/**"],
+  "separateMajorMinor": true,
+  "minimumReleaseAge": "3 days",
+  "automerge": true,
+  "ignoreTests": true,
+  "packageRules": [
+    {
+      "description": "ServerSideUp tags carry the PHP patch and the image release, for example 8.5.12-frankenphp-v5.1.1.",
+      "matchDatasources": ["docker"],
+      "matchDepNames": ["serversideup/php"],
+      "versioning": "regex:^8\\.5\\.(?<patch>\\d+)-(?<compatibility>cli|frankenphp)-v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<build>\\d+)$"
+    },
+    {
+      "description": "Docker Hub often returns no tag dates; without this, image updates would stay pending forever.",
+      "matchDatasources": ["docker"],
+      "minimumReleaseAgeBehaviour": "timestamp-optional"
+    },
+    {
+      "description": "Workflow actions run next to VARIANTS_TOKEN, so their updates wait for review in their own pull request.",
+      "matchManagers": ["github-actions"],
+      "matchDepTypes": ["action"],
+      "groupName": "GitHub Actions",
+      "groupSlug": "github-actions",
+      "automerge": false
+    },
+    {
+      "description": "Major updates wait for review in their own pull request.",
+      "matchUpdateTypes": ["major"],
+      "groupName": "major updates",
+      "groupSlug": "all",
+      "automerge": false
+    },
+    {
+      "matchDepNames": ["php"],
+      "matchManagers": ["composer"],
+      "enabled": false
+    }
+  ],
+  "rebaseWhen": "conflicted",
+  "semanticCommits": "enabled"
+}
