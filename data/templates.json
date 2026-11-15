@@ -1,1 +1,366 @@
-{}
+{
+  "blade": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-blade-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-blade-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-blade-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-blade-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-blade-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-blade-mariadb-redis"
+    }
+  ],
+  "livewire": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-starter-kit-livewire-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-starter-kit-livewire-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-livewire-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-livewire-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-mariadb-redis"
+    }
+  ],
+  "livewire-blank": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-livewire-blank-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-blank-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-livewire-blank-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-blank-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-livewire-blank-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-blank-mariadb-redis"
+    }
+  ],
+  "livewire-class-components": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-livewire-class-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-class-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-livewire-class-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-class-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-livewire-class-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-class-mariadb-redis"
+    }
+  ],
+  "livewire-teams": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-livewire-teams-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-teams-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-livewire-teams-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-teams-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-livewire-teams-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-livewire-teams-mariadb-redis"
+    }
+  ],
+  "react": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-react-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-react-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-react-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-react-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-react-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-react-mariadb-redis"
+    }
+  ],
+  "react-blank": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-react-blank-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-react-blank-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-react-blank-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-react-blank-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-react-blank-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-react-blank-mariadb-redis"
+    }
+  ],
+  "react-teams": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-react-teams-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-react-teams-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-react-teams-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-react-teams-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-react-teams-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-react-teams-mariadb-redis"
+    }
+  ],
+  "svelte": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-svelte-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-svelte-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-svelte-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-svelte-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-svelte-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-svelte-mariadb-redis"
+    }
+  ],
+  "svelte-blank": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-svelte-blank-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-svelte-blank-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-svelte-blank-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-svelte-blank-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-svelte-blank-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-svelte-blank-mariadb-redis"
+    }
+  ],
+  "svelte-teams": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-svelte-teams-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-svelte-teams-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-svelte-teams-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-svelte-teams-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-svelte-teams-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-svelte-teams-mariadb-redis"
+    }
+  ],
+  "vue": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-vue-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-vue-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-vue-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-vue-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-vue-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-vue-mariadb-redis"
+    }
+  ],
+  "vue-blank": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-vue-blank-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-vue-blank-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-vue-blank-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-vue-blank-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-vue-blank-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-vue-blank-mariadb-redis"
+    }
+  ],
+  "vue-teams": [
+    {
+      "name": "MySQL",
+      "url": "https://railway.com/deploy/laravel-vue-teams-mysql"
+    },
+    {
+      "name": "MySQL with Redis",
+      "url": "https://railway.com/deploy/laravel-vue-teams-mysql-redis"
+    },
+    {
+      "name": "PostgreSQL",
+      "url": "https://railway.com/deploy/laravel-vue-teams-postgresql"
+    },
+    {
+      "name": "PostgreSQL with Redis",
+      "url": "https://railway.com/deploy/laravel-vue-teams-postgresql-redis"
+    },
+    {
+      "name": "MariaDB",
+      "url": "https://railway.com/deploy/laravel-vue-teams-mariadb"
+    },
+    {
+      "name": "MariaDB with Redis",
+      "url": "https://railway.com/deploy/laravel-vue-teams-mariadb-redis"
+    }
+  ]
+}
