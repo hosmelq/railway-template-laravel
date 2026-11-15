@@ -1,0 +1,16 @@
+[
+  { "id": "blade", "repo": "railway-template-laravel-blade", "name": "Laravel with Blade", "flags": [], "auth": false },
+  { "id": "react-blank", "repo": "railway-template-laravel-starter-kit-react-blank", "name": "Laravel with React (without authentication)", "flags": ["--react", "--no-authentication"], "auth": false },
+  { "id": "svelte-blank", "repo": "railway-template-laravel-starter-kit-svelte-blank", "name": "Laravel with Svelte (without authentication)", "flags": ["--svelte", "--no-authentication"], "auth": false },
+  { "id": "vue-blank", "repo": "railway-template-laravel-starter-kit-vue-blank", "name": "Laravel with Vue (without authentication)", "flags": ["--vue", "--no-authentication"], "auth": false },
+  { "id": "livewire-blank", "repo": "railway-template-laravel-starter-kit-livewire-blank", "name": "Laravel with Livewire (without authentication)", "flags": ["--livewire", "--no-authentication"], "auth": false },
+  { "id": "react", "repo": "railway-template-laravel-starter-kit-react", "name": "Laravel React Starter Kit", "flags": ["--react"], "auth": true },
+  { "id": "svelte", "repo": "railway-template-laravel-starter-kit-svelte", "name": "Laravel Svelte Starter Kit", "flags": ["--svelte"], "auth": true },
+  { "id": "vue", "repo": "railway-template-laravel-starter-kit-vue", "name": "Laravel Vue Starter Kit", "flags": ["--vue"], "auth": true },
+  { "id": "react-teams", "repo": "railway-template-laravel-starter-kit-react-teams", "name": "Laravel React Starter Kit with teams", "flags": ["--react", "--teams"], "auth": true },
+  { "id": "svelte-teams", "repo": "railway-template-laravel-starter-kit-svelte-teams", "name": "Laravel Svelte Starter Kit with teams", "flags": ["--svelte", "--teams"], "auth": true },
+  { "id": "vue-teams", "repo": "railway-template-laravel-starter-kit-vue-teams", "name": "Laravel Vue Starter Kit with teams", "flags": ["--vue", "--teams"], "auth": true },
+  { "id": "livewire", "repo": "railway-template-laravel-starter-kit-livewire", "name": "Laravel Livewire Starter Kit (single-file components)", "flags": ["--livewire"], "auth": true },
+  { "id": "livewire-teams", "repo": "railway-template-laravel-starter-kit-livewire-teams", "name": "Laravel Livewire Starter Kit with teams", "flags": ["--livewire", "--teams"], "auth": true },
+  { "id": "livewire-class-components", "repo": "railway-template-laravel-starter-kit-livewire-class-components", "name": "Laravel Livewire Starter Kit (class components)", "flags": ["--livewire", "--livewire-class-components"], "auth": true }
+]

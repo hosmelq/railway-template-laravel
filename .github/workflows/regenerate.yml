@@ -1,0 +1,237 @@
+name: Regenerate Laravel applications
+
+on:
+  schedule:
+    - cron: '17 3 1 * *'
+  workflow_dispatch:
+    inputs:
+      variant:
+        description: 'One variant ID from data/variants.json; leave empty for all 14'
+        required: false
+        type: string
+
+concurrency:
+  group: regenerate
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  plan:
+    runs-on: ubuntu-24.04
+    outputs:
+      variants: ${{ steps.matrix.outputs.variants }}
+      tests: ${{ steps.matrix.outputs.tests }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - run: node --test tests/generator.test.mjs
+      - id: matrix
+        env:
+          VARIANT: ${{ inputs.variant }}
+        run: |
+          node scripts/matrix.mjs "$VARIANT" > /tmp/matrix.json
+          echo "variants=$(jq -c .variants /tmp/matrix.json)" >> "$GITHUB_OUTPUT"
+          echo "tests=$(jq -c .tests /tmp/matrix.json)" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: plan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.plan.outputs.variants) }}
+    env:
+      VARIANT: ${{ matrix.variant }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # v2
+        with:
+          php-version: '8.5'
+          extensions: exif, gd, intl, pdo_sqlite
+          tools: composer:2
+          coverage: none
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24.22.3'
+      - run: composer install --no-interaction --prefer-dist
+      - name: Generate application
+        run: |
+          mkdir -p .work/logs
+          node scripts/generate.mjs "$VARIANT" 2>&1 | tee ".work/logs/$VARIANT-generate.log"
+          tar -czf ".work/source/$VARIANT.tar.gz" -C ".work/source/$VARIANT" .
+      - name: Save generated source
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          overwrite: true
+          name: source-${{ matrix.variant }}
+          path: .work/source/${{ matrix.variant }}.tar.gz
+          retention-days: 7
+      - name: Save package inventory
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          overwrite: true
+          name: versions-${{ matrix.variant }}
+          path: .work/versions/${{ matrix.variant }}.json
+          retention-days: 7
+          if-no-files-found: ignore
+      - name: Build three images once
+        run: node scripts/build.mjs "$VARIANT" --archive 2>&1 | tee ".work/logs/$VARIANT-build.log"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          overwrite: true
+          name: images-${{ matrix.variant }}
+          path: .work/images/${{ matrix.variant }}.tar
+          compression-level: 1
+          retention-days: 1
+      - name: Save generation and build diagnostics
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          overwrite: true
+          name: build-logs-${{ matrix.variant }}
+          path: |
+            .work/logs
+            .work/reports
+          retention-days: 7
+
+  test:
+    needs: [plan, build]
+    if: ${{ !cancelled() && needs.plan.result == 'success' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      max-parallel: 14
+      matrix: ${{ fromJSON(needs.plan.outputs.tests) }}
+    env:
+      BACKEND: ${{ matrix.backend }}
+      VARIANT: ${{ matrix.variant }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24.22.3'
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          name: source-${{ matrix.variant }}
+          path: .work/bundles
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          name: images-${{ matrix.variant }}
+          path: .work/images
+      - name: Load the exact generated source and images
+        run: |
+          mkdir -p ".work/source/$VARIANT"
+          tar -xzf ".work/bundles/$VARIANT.tar.gz" -C ".work/source/$VARIANT"
+          docker load --input ".work/images/$VARIANT.tar"
+      - name: Test runtime and upstream suite
+        run: node scripts/test.mjs "$VARIANT" "$BACKEND"
+      - name: Save result
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          overwrite: true
+          name: result-${{ matrix.variant }}-${{ matrix.backend }}
+          path: .work/results/*.json
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Save runtime and test logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          overwrite: true
+          name: test-logs-${{ matrix.variant }}-${{ matrix.backend }}
+          path: .work/runs
+          if-no-files-found: ignore
+          retention-days: 7
+
+  publish:
+    needs: [plan, build, test]
+    # Only main may publish to the live variant repositories.
+    if: ${{ !cancelled() && needs.plan.result == 'success' && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.plan.outputs.variants) }}
+    env:
+      VARIANT: ${{ matrix.variant }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          name: source-${{ matrix.variant }}
+          path: .work/bundles
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        with:
+          pattern: result-${{ matrix.variant }}-*
+          path: .work/results
+          merge-multiple: true
+      - name: Publish only after all six results pass
+        env:
+          VARIANTS_TOKEN: ${{ secrets.VARIANTS_TOKEN }}
+        run: node scripts/publish.mjs "$VARIANT"
+      - name: Save publication result
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          overwrite: true
+          name: published-${{ matrix.variant }}
+          path: .work/published/*.json
+          if-no-files-found: ignore
+          retention-days: 7
+
+  finish:
+    needs: [plan, build, test, publish]
+    if: ${{ !cancelled() && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      issues: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: main
+          fetch-depth: 0
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        continue-on-error: true
+        with:
+          pattern: versions-*
+          path: .work/versions
+          merge-multiple: true
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        continue-on-error: true
+        with:
+          pattern: result-*
+          path: .work/results
+          merge-multiple: true
+      - uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
+        continue-on-error: true
+        with:
+          pattern: published-*
+          path: .work/published
+          merge-multiple: true
+      - name: Record versions and maintain failure issues
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PLAN_RESULT: ${{ needs.plan.result }}
+          VARIANT: ${{ inputs.variant }}
+        run: node scripts/finish-run.mjs "$VARIANT"

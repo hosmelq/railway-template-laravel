@@ -1,0 +1,13 @@
+{
+    "name": "hosmelq/railway-template-laravel",
+    "description": "Generate and verify Laravel applications for Railway.",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": "^8.5",
+        "laravel/installer": "5.33.0"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

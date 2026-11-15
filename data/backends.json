@@ -1,0 +1,9 @@
+{
+  "databases": [
+    { "id": "mysql", "connection": "mysql", "image": "mysql:9.4", "port": 3306 },
+    { "id": "postgres", "connection": "pgsql", "image": "postgres:18", "port": 5432 },
+    { "id": "mariadb", "connection": "mariadb", "image": "mariadb:11.8", "port": 3306 }
+  ],
+  "redis": "redis:8.2",
+  "s3": "versity/versitygw:v1.11.0"
+}
