@@ -19,7 +19,9 @@ if (!prepareExisting) {
   ], { env: { ...identity, COMPOSER_NO_INTERACTION: '1' } });
 }
 
-await run('composer', ['require', 'league/flysystem-aws-s3-v3:^3.0', '--no-interaction', '--prefer-dist'], {
+// Skip the app's Composer scripts: in CI the kits' post-update `boost:update` fails because
+// Boost writes no config when no coding agent is detected, and the scripts add nothing to the export.
+await run('composer', ['require', 'league/flysystem-aws-s3-v3:^3.0', '--no-interaction', '--prefer-dist', '--no-scripts'], {
   cwd: app, env: { COMPOSER_NO_INTERACTION: '1' },
 });
 const bootstrapFile = resolve(app, 'bootstrap/app.php');
