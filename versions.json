@@ -1,14 +1,14 @@
 {
   "installer": "5.33.0",
   "lastRun": {
-    "at": "2026-11-15T22:31:09.557Z",
-    "url": "https://github.com/hosmelq/railway-template-laravel/actions/runs/43766924523"
+    "at": "2026-11-15T23:40:15.843Z",
+    "url": "https://github.com/hosmelq/railway-template-laravel/actions/runs/43775527392"
   },
   "variants": {
     "blade": {
       "variant": "blade",
       "installer": "5.33.0",
-      "generatedAt": "2026-11-15T22:02:36.096Z",
+      "generatedAt": "2026-11-15T23:35:18.652Z",
       "composer": {
         "aws/aws-crt-php": "v1.2.7",
         "aws/aws-sdk-php": "3.403.6",
